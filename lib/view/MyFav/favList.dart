@@ -1,4 +1,3 @@
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +15,7 @@ class FavScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Colors.black, body: _body());
   }
+
 // Body
   _body() {
     return GetBuilder<ProductController>(
@@ -43,19 +43,21 @@ class FavScreen extends StatelessWidget {
       },
     );
   }
+
 // Top part of screen (App Bar) Body
   _top() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-       
         Expanded(
             child: Center(
           child: _MyFavCount(),
-        )), _back()
+        )),
+        _back()
       ],
     );
   }
+
 // Back Button
   _back() {
     return GestureDetector(
@@ -64,11 +66,12 @@ class FavScreen extends StatelessWidget {
         },
         child: ButtonTheme1(
           icon: const Icon(
-             Icons.arrow_forward_ios_outlined,
+            Icons.arrow_forward_ios_outlined,
             color: Colors.white,
           ),
         ));
   }
+
 // Title with iteam count
   _MyFavCount() {
     return TextTitle2(
@@ -76,6 +79,7 @@ class FavScreen extends StatelessWidget {
       color: Colors.white,
     );
   }
+
 // iteam List
   _MyFavList() {
     return GetBuilder<ProductController>(
@@ -87,23 +91,33 @@ class FavScreen extends StatelessWidget {
               itemCount: int.parse(_.favCount),
               itemBuilder: ((context, index) {
                 return ListTheme(
-                    removeTab: () {
-                      _.removeFromFav(_.favList[index]);
-                    },
-                    price: _.favList[index].price,
-                    title: _.favList[index].title,
-                    img: _.favList[index].img,
-                    color: _.favList[index].color, tag: _.favList[index].title, tap: (){
-                                           Get.to(ProductDetails(
-                          tag:  _.favList[index].title,
+                  removeTab: () {
+                    _.removeFromFav(_.favList[index]);
+                  },
+                  price: _.favList[index].price,
+                  title: _.favList[index].title,
+                  img: _.favList[index].img,
+                  color: _.favList[index].color,
+                  tag: _.favList[index].title,
+                  tap: () {
+                    Get.to(
+                        ProductDetails(
+                          tag: _.favList[index].title,
                           color: _.favList[index].color,
-                          img: _.favList[index].img, price: _.favList[index].price, title: _.favList[index].title,),duration: _duration(), transition: Transition.fade );
-                    },);
+                          img: _.favList[index].img,
+                          price: _.favList[index].price,
+                          title: _.favList[index].title,
+                        ),
+                        duration: _duration(),
+                        transition: Transition.fade);
+                  },
+                );
               })),
         );
       },
     );
   }
+
 // Total Price
   _totalPrice() {
     return TextTitle1(
@@ -111,6 +125,7 @@ class FavScreen extends StatelessWidget {
       color: Colors.white,
     );
   }
+
   // Duration
   _duration() {
     return Duration(milliseconds: 1400);

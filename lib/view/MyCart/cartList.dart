@@ -15,6 +15,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Colors.black, body: _body());
   }
+
 // Body
   _body() {
     return GetBuilder<ProductController>(
@@ -42,6 +43,7 @@ class CartScreen extends StatelessWidget {
       },
     );
   }
+
 // Top part of screen (App Bar) Body
   _top() {
     return Row(
@@ -55,6 +57,7 @@ class CartScreen extends StatelessWidget {
       ],
     );
   }
+
 // Back Button
   _back() {
     return GestureDetector(
@@ -68,6 +71,7 @@ class CartScreen extends StatelessWidget {
           ),
         ));
   }
+
 // Title with iteam count
   _MyCartCount() {
     return TextTitle2(
@@ -75,6 +79,7 @@ class CartScreen extends StatelessWidget {
       color: Colors.white,
     );
   }
+
 // iteam List
   _MyCartList() {
     return GetBuilder<ProductController>(
@@ -86,23 +91,33 @@ class CartScreen extends StatelessWidget {
               itemCount: int.parse(_.cartCount),
               itemBuilder: ((context, index) {
                 return ListTheme(
-                    removeTab: () {
-                      _.removeFromCart(_.cartList[index]);
-                    },
-                    price: _.cartList[index].price,
-                    title: _.cartList[index].title,
-                    img: _.cartList[index].img,
-                    color: _.cartList[index].color, tag: _.cartList[index].color, tap: (){
-                       Get.to(ProductDetails(
-                          tag:   _.cartList[index].color,
+                  removeTab: () {
+                    _.removeFromCart(_.cartList[index]);
+                  },
+                  price: _.cartList[index].price,
+                  title: _.cartList[index].title,
+                  img: _.cartList[index].img,
+                  color: _.cartList[index].color,
+                  tag: _.cartList[index].color,
+                  tap: () {
+                    Get.to(
+                        ProductDetails(
+                          tag: _.cartList[index].color,
                           color: _.cartList[index].color,
-                          img:  _.cartList[index].img, price: _.cartList[index].price, title: _.cartList[index].title,),duration: _duration(), transition: Transition.fade );
-                    },);
+                          img: _.cartList[index].img,
+                          price: _.cartList[index].price,
+                          title: _.cartList[index].title,
+                        ),
+                        duration: _duration(),
+                        transition: Transition.fade);
+                  },
+                );
               })),
         );
       },
     );
   }
+
 // Total Price
   _totalPrice() {
     return TextTitle1(
@@ -110,6 +125,7 @@ class CartScreen extends StatelessWidget {
       color: Colors.white,
     );
   }
+
   // Duration
   _duration() {
     return Duration(milliseconds: 1400);

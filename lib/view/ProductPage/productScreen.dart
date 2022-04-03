@@ -107,10 +107,16 @@ class ProductScreen extends StatelessWidget {
                     },
                     tag: _.cartList[index].color,
                     tab: () {
-                      Get.to(ProductDetails(
-                          tag: _.cartList[index].color,
-                          color: _.cartList[index].color,
-                          img: _.cartList[index].img, price: _.cartList[index].price, title: _.cartList[index].title,),duration: _duration(), transition: Transition.fade );
+                      Get.to(
+                          ProductDetails(
+                            tag: _.cartList[index].color,
+                            color: _.cartList[index].color,
+                            img: _.cartList[index].img,
+                            price: _.cartList[index].price,
+                            title: _.cartList[index].title,
+                          ),
+                          duration: _duration(),
+                          transition: Transition.fade);
                     },
                   )));
         });
@@ -143,11 +149,18 @@ class ProductScreen extends StatelessWidget {
                         },
                         myFavtap: () {
                           pro.addFav(p);
-                        }, tap: (){
-                          Get.to(ProductDetails(
-                          tag: p.title,
-                          color: p.color,
-                          img: p.img, price: p.price, title: p.title,),duration: _duration(), transition: Transition.fade );
+                        },
+                        tap: () {
+                          Get.to(
+                              ProductDetails(
+                                tag: p.title,
+                                color: p.color,
+                                img: p.img,
+                                price: p.price,
+                                title: p.title,
+                              ),
+                              duration: _duration(),
+                              transition: Transition.fade);
                         },
                       ))))
               .toList()),
